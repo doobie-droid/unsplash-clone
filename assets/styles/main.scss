@@ -1,0 +1,56 @@
+@use "variables" as *;
+@use "reset";
+
+.index {
+  &-backdrop {
+    background-color: $backdrop-color;
+    height: 295px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &-body {
+    background-color: red;
+  }
+
+  &-search {
+    &__form {
+      background-color: $primary-background;
+      display: flex;
+      justify-content: start;
+      max-width: 826px;
+      padding: 20px 0px;
+      font-size: 18px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 60%;
+
+      button {
+        cursor: pointer;
+
+        background-color: $primary-background;
+        border: none;
+        margin: 0px 20px;
+      }
+    }
+
+    &__input {
+      border: none;
+      background-color: $primary-background;
+      width: 80%;
+
+      &::placeholder {
+        color: $placeholder-color;
+      }
+    }
+
+    &__box {
+      width: 100%;
+    }
+  }
+}
+
+#index-search__header {
+  display: none;
+}
