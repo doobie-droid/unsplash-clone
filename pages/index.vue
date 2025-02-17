@@ -225,8 +225,8 @@
         </div>
       </div>
     </div>
-    <p>Total Courses: {{ photoStore.GetPhotos }}</p>
-    <button @click="getPhotos">Click me</button>
+    <!-- <p>Total Courses: {{ photoStore.GetPhotos }}</p>
+    <button @click="getPhotos">Click me</button> -->
   </div>
 </template>
 
@@ -242,6 +242,7 @@ export default {
   },
   mounted() {
     window.addEventListener("resize", this.adjustGridRows);
+    this.photoStore.FetchAllPhotos();
   },
   methods: {
     adjustGridRows() {
@@ -280,9 +281,6 @@ export default {
       const base64String = canvas.toDataURL("image/bmp");
 
       return base64String;
-    },
-    getPhotos() {
-      this.photoStore.FetchAllPhotos(this.$api);
     },
   },
 };

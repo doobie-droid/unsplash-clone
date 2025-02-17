@@ -6,9 +6,6 @@ export default defineNuxtPlugin((nuxtApp) => {
   const applyAxiosInterceptors = (axios) => {
     axios.interceptors.response.use(
       (response) => {
-        const {
-          data: { message },
-        } = response;
         return response.data;
       },
       (error) => {
