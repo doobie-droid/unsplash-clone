@@ -8,7 +8,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       apiBase: process.env.API_URL || "http://localhost:9000",
-      unsplashApiBase: "https://api.unsplash.com/",
+      unsplashApiBase:
+        process.env.UNSPLASH_API_URL || "https://api.unsplash.com/",
       unsplashAccessKey: process.env.UNSPLASH_ACCESS_KEY,
       unsplashSecretKey: process.env.UNSPLASH_SECRET_KEY,
     },
