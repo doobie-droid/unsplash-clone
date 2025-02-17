@@ -229,10 +229,14 @@
 </template>
 
 <script>
+import { decodeBlurHash } from "fast-blurhash";
+
 export default {
   mounted() {
     console.log("Nuxt page mounted!");
     window.addEventListener("resize", this.adjustGridRows);
+    const pixels = this.blurHashToBase64("LxKnPOkCRjj@_NfkaxayIoayWBay");
+    console.log("pixels", pixels);
   },
   methods: {
     adjustGridRows() {
@@ -255,6 +259,22 @@ export default {
         minHeight = height < minHeight ? height : minHeight;
       });
       return minHeight;
+    },
+    blurHashToBase64(blurHash) {
+      let width = 32;
+      let height = 32;
+      const pixels = decodeBlurHash(blurHash, width, height);
+      const canvas = document.createElement("canvas");
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext("2d");
+
+      const imageData = ctx.createImageData(width, height);
+      imageData.data.set(pixels);
+      ctx.putImageData(imageData, 0, 0);
+      const base64String = canvas.toDataURL("image/bmp");
+
+      return base64String;
     },
   },
 };
