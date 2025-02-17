@@ -3,7 +3,7 @@ import { useNuxtApp } from "#app";
 
 export const usePhotoStore = defineStore("photos", {
   state: () => ({
-    Photos: { red: "pink" },
+    Photos: {},
   }),
   getters: {
     GetPhotos: (state) => state.Photos,

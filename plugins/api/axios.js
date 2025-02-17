@@ -25,6 +25,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   const axiosInstance = axios.create({
     baseURL: config.public.apiBase,
     withCredentials: true,
+    "Access-Control-Allow-Origin": `*`,
   });
 
   const axiosUnsplashInstance = axios.create({
@@ -32,6 +33,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Client-ID ${config.public.unsplashAccessKey}`,
+      "Access-Control-Allow-Origin": `*`,
     },
   });
 
