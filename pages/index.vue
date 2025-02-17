@@ -225,18 +225,23 @@
         </div>
       </div>
     </div>
+    <p>Total Courses: {{ photoStore.GetPhotos }}</p>
+    <button @click="getPhotos">Click me</button>
   </div>
 </template>
 
 <script>
 import { decodeBlurHash } from "fast-blurhash";
+import { usePhotoStore } from "~/stores/photoStore";
 
 export default {
+  data() {
+    return {
+      photoStore: usePhotoStore(),
+    };
+  },
   mounted() {
-    console.log("Nuxt page mounted!");
     window.addEventListener("resize", this.adjustGridRows);
-    const pixels = this.blurHashToBase64("LxKnPOkCRjj@_NfkaxayIoayWBay");
-    console.log("pixels", pixels);
   },
   methods: {
     adjustGridRows() {
@@ -275,6 +280,9 @@ export default {
       const base64String = canvas.toDataURL("image/bmp");
 
       return base64String;
+    },
+    getPhotos() {
+      this.photoStore.FetchAllPhotos(this.$api);
     },
   },
 };
