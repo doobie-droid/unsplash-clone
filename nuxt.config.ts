@@ -1,5 +1,18 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  app: {
+    head: {
+      title: process.env.npm_package_title || "",
+      meta: [
+        {
+          name: "description",
+          content:
+            "This is a clone of the Unsplash web application created as part of my cowrywise recruitment",
+        },
+      ],
+      link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    },
+  },
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
   css: ["@/assets/styles/main.scss"],
