@@ -72,9 +72,7 @@
               :href="`/photos/${photo.slug}`"
             >
               <div class="picture-toggler">
-                <!-- <img
-                  src="data:image/bmp;base64,Qk32BAAAAAAAADYAAAAoAAAACAAAAAgAAAABABgAAAAAAMAAAAATCwAAEwsAAAAAAAAAAAAAAgAABgAACwEADwgAEw0pGhY3IyArKygAGhgjGBkgGB8pICpILTVjNDtsNThcMDE0Jic/Iic+IC1JKztnPEqCRE+LQUh4NDdMKSpHJStHIjFUL0FxQFCMSVWUREyBNDhTJCU/ISVAHyxNKztoOkiAQUyHPUR0LjJJFBIjFBUnFh42HylMKDJeLDRhKi9RIyQrAAAAAAAACAAACgAOAAAQAAAAAgAAFA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAACgAA"
-                /> -->
+                <!-- <img :src="blurHashToBase64(photo.blur_hash)" /> -->
                 <img
                   :alt="`${photo.alt_description}`"
                   loading="lazy"
