@@ -25,6 +25,10 @@ export default {
       photoStore: usePhotoStore(),
     };
   },
+  mount() {
+    window.addEventListener("scroll", this.adjustGridRows);
+  },
+
   methods: {
     adjustGridRows() {
       const gridItems = document.querySelectorAll(".picture-card");

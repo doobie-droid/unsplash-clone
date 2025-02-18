@@ -43,6 +43,7 @@
         name="keywordForSearch"
         aria-controls="search-result-header"
         class="index-search__input"
+        autofocus
       />
       <div
         id="index-search__header"
@@ -68,7 +69,7 @@ export default {
   methods: {
     async handleSearch(event) {
       const router = useRouter();
-      router.push(`/photos/search`);
+      router.push(`/photos/search?query=${this.searchQuery}`);
       await this.photoStore.SearchPhotos(this.searchQuery);
     },
   },

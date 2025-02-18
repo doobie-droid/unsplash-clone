@@ -8,6 +8,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    h1 {
+      text-transform: capitalize;
+      color: $backdrop-text-primary;
+      position: absolute;
+      display: block;
+      left: 10%;
+    }
+    span {
+      color: $backdrop-text-secondary;
+    }
   }
 
   &-search {
@@ -102,6 +113,7 @@
     object-fit: cover;
     height: fit-content;
     position: relative;
+    border: black;
 
     .metadata {
       z-index: 4;
@@ -269,7 +281,7 @@ img.placeholder {
     opacity: 1;
   }
   50% {
-    opacity: 0.6;
+    opacity: 0.4;
   }
   100% {
     opacity: 1;
