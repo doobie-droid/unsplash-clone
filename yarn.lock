@@ -4875,23 +4875,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nuxt-app@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "nuxt-app@workspace:."
-  dependencies:
-    "@nuxt/kit": "npm:^3.15.4"
-    "@nuxt/schema": "npm:^3.15.4"
-    "@nuxtjs/axios": "npm:^5.13.6"
-    "@pinia/nuxt": "npm:^0.10.1"
-    fast-blurhash: "npm:^1.1.4"
-    nuxt: "npm:^3.15.4"
-    pinia: "npm:^3.0.1"
-    sass: "npm:^1.85.0"
-    vue: "npm:latest"
-    vue-router: "npm:latest"
-  languageName: unknown
-  linkType: soft
-
 "nuxt@npm:^3.15.4":
   version: 3.15.4
   resolution: "nuxt@npm:3.15.4"
@@ -6820,6 +6803,23 @@ __metadata:
   checksum: 10c0/265896fb541ffaad9da7e8f73e24aaa5d0d1f8161cb66445caf0962d2c357de0f17d208020b59b0fb1c68843e6307966f91706fba34ccaba30480881f37887ae
   languageName: node
   linkType: hard
+
+"unsplash-clone@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "unsplash-clone@workspace:."
+  dependencies:
+    "@nuxt/kit": "npm:^3.15.4"
+    "@nuxt/schema": "npm:^3.15.4"
+    "@nuxtjs/axios": "npm:^5.13.6"
+    "@pinia/nuxt": "npm:^0.10.1"
+    fast-blurhash: "npm:^1.1.4"
+    nuxt: "npm:^3.15.4"
+    pinia: "npm:^3.0.1"
+    sass: "npm:^1.85.0"
+    vue: "npm:latest"
+    vue-router: "npm:latest"
+  languageName: unknown
+  linkType: soft
 
 "unstorage@npm:^1.13.1, unstorage@npm:^1.14.4":
   version: 1.14.4

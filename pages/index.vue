@@ -96,13 +96,13 @@
       id="picture-details"
       v-if="showPhotoDetail && foundPhoto"
       class="overlay"
-      @click="toggleModal"
     >
       <div class="picture-details-card">
         <button
           aria-controls="picture-details"
           role="button"
           title="Close overlay"
+          @click="toggleModal"
         >
           <svg
             fill="#ffffff"
