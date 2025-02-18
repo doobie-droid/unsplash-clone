@@ -10,9 +10,18 @@ export const usePhotoStore = defineStore("photos", {
   },
   actions: {
     async FetchAllPhotos() {
+      if (this.Photos?.length > 0) {
+        // Skip fetching photos if photos already exist to reduce hits to the main api
+        return;
+      }
       const { $api } = useNuxtApp();
       const response = await $api.unsplash.GetPhotos();
       this.Photos = response;
+    },
+    async SearchPhotos(searchParams) {
+      const { $api } = useNuxtApp();
+      const response = await $api.unsplash.SearchPhotos(searchParams);
+      this.Photos = response.results;
     },
   },
 });
