@@ -71,7 +71,7 @@
               :title="`${photo.alt_description}`"
               :href="`/photos/${photo.slug}`"
             >
-              <div>
+              <div class="picture-toggler">
                 <!-- <img
                   src="data:image/bmp;base64,Qk32BAAAAAAAADYAAAAoAAAACAAAAAgAAAABABgAAAAAAMAAAAATCwAAEwsAAAAAAAAAAAAAAgAABgAACwEADwgAEw0pGhY3IyArKygAGhgjGBkgGB8pICpILTVjNDtsNThcMDE0Jic/Iic+IC1JKztnPEqCRE+LQUh4NDdMKSpHJStHIjFUL0FxQFCMSVWUREyBNDhTJCU/ISVAHyxNKztoOkiAQUyHPUR0LjJJFBIjFBUnFh42HylMKDJeLDRhKi9RIyQrAAAAAAAACAAACgAOAAAQAAAAAgAAFA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAACgAA"
                 /> -->
@@ -79,9 +79,13 @@
                   :alt="`${photo.alt_description}`"
                   loading="lazy"
                   itemprop="thumbnailUrl"
-                  sizes="(min-width: 1440px) 420px, (min-width: 992px) calc(calc(100vw - 88px) / 3), (min-width: 768px) calc(calc(100vw - 64px) / 2), 100vw"
+                  sizes="(min-width: 1440px) 288px, (min-width: 992px) calc(calc(100vw - 572px) / 3), (min-width: 768px) calc(calc(100vw - 400px) / 2), 75vw"
                   :srcset="`${generateSrcSet(photo.urls.full)}`"
                 />
+                <span class="metadata"
+                  ><div class="name">{{ photo.user.name }}</div>
+                  <div class="location">{{ photo.user.location }}</div>
+                </span>
               </div>
             </a>
           </figure>
@@ -106,9 +110,8 @@ export default {
   },
   mounted() {
     window.addEventListener("resize", this.adjustGridRows);
+    window.addEventListener("scroll", this.adjustGridRows);
     this.photoStore.FetchAllPhotos();
-    console.log("These are the photos");
-    console.log(this.photoStore.GetPhotos);
   },
   methods: {
     adjustGridRows() {
