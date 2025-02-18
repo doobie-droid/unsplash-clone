@@ -66,10 +66,10 @@
             itemscope
             itemtype="https://schema.org/ImageObject"
           >
-            <a
+            <NuxtLink
               itemprop="imageUrl"
-              :title="`${photo.alt_description}`"
-              :href="`/photos/${photo.slug}`"
+              :title="photo.alt_description"
+              :to="`/photos/${photo.slug}`"
             >
               <div class="picture-toggler">
                 <!-- <img :src="blurHashToBase64(photo.blur_hash)" /> -->
@@ -85,31 +85,98 @@
                   <div class="location">{{ photo.user.location }}</div>
                 </span>
               </div>
-            </a>
+            </NuxtLink>
           </figure>
         </div>
       </div>
     </div>
     <!-- <p>Total Courses: {{ photoStore.GetPhotos }}</p>
     <button @click="getPhotos">Click me</button> -->
+    <div
+      id="picture-details"
+      v-if="showPhotoDetail && foundPhoto"
+      class="overlay"
+      @click="toggleModal"
+    >
+      <div class="picture-details-card">
+        <button
+          aria-controls="picture-details"
+          role="button"
+          title="Close overlay"
+        >
+          <svg
+            fill="#ffffff"
+            width="32px"
+            height="32px"
+            viewBox="0 0 256.00 256.00"
+            id="Flat"
+            xmlns="http://www.w3.org/2000/svg"
+            stroke="#ffffff"
+            stroke-width="25.6"
+          >
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke="#CCCCCC"
+              stroke-width="25.6"
+            >
+              <path
+                d="M202.82861,197.17188a3.99991,3.99991,0,1,1-5.65722,5.65624L128,133.65723,58.82861,202.82812a3.99991,3.99991,0,0,1-5.65722-5.65624L122.343,128,53.17139,58.82812a3.99991,3.99991,0,0,1,5.65722-5.65624L128,122.34277l69.17139-69.17089a3.99991,3.99991,0,0,1,5.65722,5.65624L133.657,128Z"
+              ></path>
+            </g>
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M202.82861,197.17188a3.99991,3.99991,0,1,1-5.65722,5.65624L128,133.65723,58.82861,202.82812a3.99991,3.99991,0,0,1-5.65722-5.65624L122.343,128,53.17139,58.82812a3.99991,3.99991,0,0,1,5.65722-5.65624L128,122.34277l69.17139-69.17089a3.99991,3.99991,0,0,1,5.65722,5.65624L133.657,128Z"
+              ></path>
+            </g>
+          </svg>
+        </button>
+        <img
+          :src="blurHashToBase64(foundPhoto.blur_hash)"
+          class="placeholder"
+          :class="{ 'fade-out': imageLoaded }"
+        />
+        <img
+          sizes="75vh"
+          :alt="`${foundPhoto.alt_description}`"
+          :srcset="`${generateSrcSet(foundPhoto.urls.full, 'h')}`"
+          :class="{ 'fade-in': imageLoaded }"
+          @load="hidePlaceholder"
+        />
+        <span class="metadata">
+          <div class="name">{{ foundPhoto.user.name }}</div>
+          <div class="location">{{ foundPhoto.user.location }}</div>
+        </span>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { decodeBlurHash } from "fast-blurhash";
 import { usePhotoStore } from "~/stores/photoStore";
+import { useRoute } from "vue-router";
 
 export default {
   name: "HomePage",
   data() {
     return {
       photoStore: usePhotoStore(),
+      foundPhoto: null,
+      showPhotoDetail: false,
+      imageLoaded: false,
     };
   },
-  mounted() {
+  async mounted() {
+    const route = useRoute();
     window.addEventListener("resize", this.adjustGridRows);
     window.addEventListener("scroll", this.adjustGridRows);
-    this.photoStore.FetchAllPhotos();
+    await this.photoStore.FetchAllPhotos();
+    if (this.findPhotoBySlug(route.params.slug)) {
+      this.toggleModal();
+    }
   },
   methods: {
     adjustGridRows() {
@@ -149,14 +216,40 @@ export default {
 
       return base64String;
     },
-    generateSrcSet(url) {
+    generateSrcSet(url, dimension = "w") {
       const parsedUrl = new URL(url);
       parsedUrl.searchParams.set("q", "80");
 
       const sizes = Array.from({ length: 13 }, (_, i) => (i + 1) * 100);
       return sizes
-        .map((size) => `${parsedUrl.href}&w=${size} ${size}w`)
+        .map((size) => `${parsedUrl.href}&${dimension}=${size} ${size}w`)
         .join(", ");
+    },
+    findPhotoBySlug(slug) {
+      console.log("photos");
+      if (
+        !this.photoStore.GetPhotos ||
+        !Array.isArray(this.photoStore.GetPhotos)
+      ) {
+        console.log("nothing");
+        return null;
+      }
+      this.foundPhoto = this.photoStore.GetPhotos.find(
+        (photo) => photo.slug === slug
+      );
+      console.log(this.foundPhoto);
+      return this.foundPhoto;
+    },
+    toggleModal() {
+      this.showPhotoDetail = !this.showPhotoDetail;
+      if (this.showPhotoDetail) {
+        document.body.classList.add("fixed-body");
+      } else {
+        document.body.classList.remove("fixed-body");
+      }
+    },
+    hidePlaceholder() {
+      this.imageLoaded = true;
     },
   },
 };

@@ -104,7 +104,7 @@
     position: relative;
 
     .metadata {
-      z-index: 400;
+      z-index: 4;
       color: white;
       text-transform: capitalize;
       position: absolute;
@@ -121,7 +121,88 @@
       }
     }
   }
+
+  &-details-card {
+    background-color: white;
+    border-radius: 10px;
+    width: fit-content;
+    height: 90vh;
+    overflow: hidden;
+    position: relative;
+
+    .metadata {
+      z-index: 4;
+      color: black;
+      text-transform: capitalize;
+      position: absolute;
+      left: 30px;
+      bottom: 32px;
+      .name {
+        font-weight: normal;
+        padding-bottom: 0px;
+      }
+      .location {
+        padding-top: 0px;
+        font-weight: lighter;
+        font-size: small;
+      }
+    }
+  }
+}
+.overlay {
+  font-size: large;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  cursor: pointer;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    z-index: 2;
+    pointer-events: none;
+    transition: all 1s ease;
+    opacity: 0;
+
+    &.fade-in {
+      opacity: 1;
+    }
+  }
+  button {
+    background-color: transparent;
+    position: fixed;
+    right: 20%;
+    top: 40px;
+    cursor: pointer;
+    z-index: 400;
+  }
+}
+.fixed-body {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 #index-search__header {
   display: none;
+}
+
+img.placeholder {
+  object-fit: cover;
+  min-height: 75vh;
+  width: 100%;
+  transition: all 1s ease;
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  &.fade-out {
+    opacity: 0;
+  }
 }

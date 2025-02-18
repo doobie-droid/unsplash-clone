@@ -27,4 +27,13 @@ export default defineNuxtConfig({
       unsplashSecretKey: process.env.UNSPLASH_SECRET_KEY,
     },
   },
+  hooks: {
+    "pages:extend"(pages) {
+      pages.push({
+        name: "photos-detail",
+        path: "/photos/:slug",
+        file: "~/pages/index.vue",
+      });
+    },
+  },
 });
