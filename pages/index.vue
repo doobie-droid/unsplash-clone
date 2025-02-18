@@ -4,7 +4,8 @@
       <search-bar></search-bar>
     </backdrop>
     <div class="index-body">
-      <PictureDisplay />
+      <Skeleton v-if="isLoading" />
+      <PictureDisplay @pictureDisplayLoaded="toggleLoading" />
     </div>
     <PictureDetail :photo="foundPhoto" />
   </div>
@@ -17,14 +18,16 @@ import Backdrop from "~/components/ui/Backdrop.vue";
 import SearchBar from "~/components/widgets/SearchBar.vue";
 import PictureDisplay from "~/components/unsplash/PictureDisplay.vue";
 import PictureDetail from "~/components/unsplash/PictureDetail.vue";
+import Skeleton from "~/components/ui/Skeleton.vue";
 
 export default {
-  components: { Backdrop, SearchBar, PictureDisplay, PictureDetail },
+  components: { Backdrop, SearchBar, PictureDisplay, PictureDetail, Skeleton },
   name: "HomePage",
   data() {
     return {
       photoStore: usePhotoStore(),
       foundPhoto: null,
+      isLoading: true,
     };
   },
   mounted() {
@@ -40,6 +43,9 @@ export default {
       }
       this.foundPhoto = photos.find((photo) => photo.slug === slug) || null;
       return this.foundPhoto;
+    },
+    toggleLoading() {
+      this.isLoading = false;
     },
   },
 };

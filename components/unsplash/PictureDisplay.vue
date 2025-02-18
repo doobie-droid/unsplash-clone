@@ -5,7 +5,7 @@
         v-for="photo in photoStore.GetPhotos"
         :key="photo.id"
         :photo="photo"
-        @imageLoaded="handleImageLoaded"
+        @pictureCardLoaded="handleImageLoaded"
       />
     </div>
   </div>
@@ -50,6 +50,7 @@ export default {
     handleImageLoaded(photoId) {
       let _ = photoId;
       this.adjustGridRows();
+      this.$emit("pictureDisplayLoaded");
     },
   },
 };

@@ -64,7 +64,7 @@ export default {
         .join(", ");
     },
     handleImageLoad() {
-      this.$emit("imageLoaded", this.photo.id);
+      this.$emit("pictureCardLoaded", this.photo.id);
     },
   },
 };

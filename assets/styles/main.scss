@@ -205,3 +205,73 @@ img.placeholder {
     opacity: 0;
   }
 }
+.skeleton {
+  &-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-50px);
+    padding: 0px 20px;
+  }
+
+  &-carousel {
+    display: grid;
+    padding: 0px 40px;
+    gap: 50px;
+    row-gap: 30px;
+    grid-auto-rows: minmax(min-content, auto);
+    grid-template-columns: repeat(1, 1fr);
+    @media (min-width: $breakpoint-mobile) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: $breakpoint-tab) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &-card {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    height: 80vh;
+    width: 80vw;
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    justify-content: end;
+    animation: pulse 1.5s infinite;
+    @media (min-width: $breakpoint-mobile) {
+      height: 70vh;
+      width: 40vw;
+    }
+    @media (min-width: $breakpoint-tab) {
+      height: 45vh;
+      width: 20vw;
+    }
+  }
+
+  &-text {
+    height: 20px;
+    width: 60%;
+    margin-top: 10px;
+    background-color: #d0d0d0;
+    border-radius: 5px;
+
+    &.short {
+      height: 15px;
+      width: 50%;
+    }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
