@@ -1,11 +1,11 @@
 <template>
-  <div id="picture-details" v-if="showPhotoDetail && photo" class="overlay">
+  <div id="picture-details" class="overlay">
     <div class="picture-details-card">
       <button
         aria-controls="picture-details"
         role="button"
         title="Close overlay"
-        @click="toggleModal"
+        @click="closeModal"
       >
         <svg
           fill="#ffffff"
@@ -63,7 +63,6 @@ export default {
   data() {
     return {
       imageLoaded: false,
-      showPhotoDetail: true,
     };
   },
   props: {
@@ -71,6 +70,12 @@ export default {
       type: Object,
       required: true,
     },
+  },
+  mounted() {
+    document.body.classList.add("fixed-body");
+  },
+  unmounted() {
+    document.body.classList.remove("fixed-body");
   },
   methods: {
     blurHashToBase64(blurHash) {
@@ -99,13 +104,8 @@ export default {
     hidePlaceholder() {
       this.imageLoaded = true;
     },
-    toggleModal() {
-      this.showPhotoDetail = !this.showPhotoDetail;
-      if (this.showPhotoDetail) {
-        document.body.classList.add("fixed-body");
-      } else {
-        document.body.classList.remove("fixed-body");
-      }
+    closeModal() {
+      this.$emit("closeModal");
     },
   },
 };

@@ -7,7 +7,11 @@
       <Skeleton v-if="isLoading" />
       <PictureDisplay @pictureDisplayLoaded="toggleLoading" />
     </div>
-    <PictureDetail :photo="foundPhoto" v-if="foundPhoto" />
+    <PictureDetail
+      :photo="foundPhoto"
+      v-if="foundPhoto"
+      @closeModal="invalidateFoundPhoto"
+    />
   </div>
 </template>
 
@@ -44,6 +48,10 @@ export default {
     },
     toggleLoading() {
       this.isLoading = false;
+    },
+    invalidateFoundPhoto() {
+      console.log("modal closed");
+      this.foundPhoto = null;
     },
   },
 };

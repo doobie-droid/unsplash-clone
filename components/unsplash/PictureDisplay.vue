@@ -36,7 +36,6 @@ export default {
         const image = item.querySelector("img");
         let rowSpan;
         const height = image.clientHeight;
-        console.log(this.getMinRowHeight());
         rowSpan = Math.round(height / this.getMinRowHeight());
         item.style.gridRow = `span ${rowSpan}`;
       });
