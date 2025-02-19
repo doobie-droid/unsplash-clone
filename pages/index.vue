@@ -7,13 +7,12 @@
       <Skeleton v-if="isLoading" />
       <PictureDisplay @pictureDisplayLoaded="toggleLoading" />
     </div>
-    <PictureDetail :photo="foundPhoto" />
+    <PictureDetail :photo="foundPhoto" v-if="foundPhoto" />
   </div>
 </template>
 
 <script>
 import { usePhotoStore } from "~/stores/photoStore";
-import { useRoute } from "vue-router";
 import Backdrop from "~/components/ui/Backdrop.vue";
 import SearchBar from "~/components/widgets/SearchBar.vue";
 import PictureDisplay from "~/components/unsplash/PictureDisplay.vue";
@@ -30,10 +29,9 @@ export default {
       isLoading: true,
     };
   },
-  mounted() {
-    this.photoStore.FetchAllPhotos();
-    const route = useRoute();
-    this.foundPhoto = this.findPhotoBySlug(route.params.slug);
+  async mounted() {
+    await this.photoStore.FetchAllPhotos();
+    this.foundPhoto = this.findPhotoBySlug(this.$route.params.slug);
   },
   methods: {
     findPhotoBySlug(slug) {
