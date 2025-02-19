@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   app: {
+    baseURL: "unsplash-clone",
     head: {
       title: process.env.npm_package_title || "",
       meta: [
@@ -11,6 +12,12 @@ export default defineNuxtConfig({
         },
       ],
       link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    },
+  },
+
+  nitro: {
+    prerender: {
+      routes: ["/"],
     },
   },
   compatibilityDate: "2024-11-01",
