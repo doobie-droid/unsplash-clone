@@ -30,7 +30,9 @@ export default defineNuxtConfig({
       apiBase: process.env.API_URL || "http://localhost:9000",
       unsplashApiBase:
         process.env.UNSPLASH_API_URL || "https://api.unsplash.com/",
-      unsplashAccessKey: process.env.UNSPLASH_ACCESS_KEY,
+      unsplashAccessKey:
+        process.env.UNSPLASH_ACCESS_KEY ||
+        "eoh2qpNxq8-V3c_zYtpTRFapvcD3Lzpb53i3RIulLwo",
       unsplashSecretKey: process.env.UNSPLASH_SECRET_KEY,
     },
   },
