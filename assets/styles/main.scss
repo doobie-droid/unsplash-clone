@@ -1,0 +1,289 @@
+@use "variables" as *;
+@use "reset";
+
+.index {
+  &-backdrop {
+    background-color: $backdrop-color;
+    height: 295px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      text-transform: capitalize;
+      color: $backdrop-text-primary;
+      position: absolute;
+      display: block;
+      left: 10%;
+    }
+    span {
+      color: $backdrop-text-secondary;
+    }
+  }
+
+  &-search {
+    &__form {
+      background-color: $primary-background;
+      display: flex;
+      justify-content: start;
+      padding: 20px 0px;
+      font-size: 18px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 80%;
+
+      button {
+        cursor: pointer;
+        color: $placeholder-color;
+        background-color: $primary-background;
+        border: none;
+        margin: 0px 20px;
+
+        &:hover {
+          color: black;
+          transition: 1000ms;
+        }
+      }
+    }
+
+    &__input {
+      border: none;
+      background-color: $primary-background;
+      width: 80%;
+
+      &::placeholder {
+        color: $placeholder-color;
+      }
+    }
+
+    &__box {
+      width: 100%;
+    }
+  }
+}
+
+.picture {
+  &-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-50px);
+    padding: 0px 20px;
+    @media (min-width: $breakpoint-mobile) {
+      transform: translate(-50px, -50px);
+    }
+  }
+  &-carousel {
+    display: grid;
+    gap: 60px;
+    row-gap: 30px;
+    grid-auto-rows: minmax(min-content, auto);
+    grid-template-columns: repeat(1, 1fr);
+    @media (min-width: $breakpoint-mobile) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: $breakpoint-tab) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &-toggler {
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40%;
+      background: linear-gradient(to top, rgba(0, 0, 0, 1), transparent);
+      pointer-events: none;
+      overflow: hidden;
+    }
+    img {
+      border-radius: 10px;
+      object-fit: fill;
+      cursor: zoom-in;
+    }
+  }
+  &-card {
+    float: left;
+    border-radius: 10px;
+    overflow: hidden;
+    object-fit: cover;
+    height: fit-content;
+    position: relative;
+    border: black;
+
+    .metadata {
+      z-index: 4;
+      color: white;
+      text-transform: capitalize;
+      position: absolute;
+      left: 24px;
+      bottom: 32px;
+      .name {
+        font-weight: normal;
+        padding-bottom: 0px;
+      }
+      .location {
+        padding-top: 0px;
+        font-weight: lighter;
+        font-size: small;
+      }
+    }
+  }
+
+  &-details-card {
+    background-color: white;
+    border-radius: 10px;
+    width: fit-content;
+    height: 90vh;
+    overflow: hidden;
+    position: relative;
+
+    .metadata {
+      z-index: 4;
+      color: black;
+      text-transform: capitalize;
+      position: absolute;
+      left: 30px;
+      bottom: 32px;
+      .name {
+        font-weight: normal;
+        padding-bottom: 0px;
+      }
+      .location {
+        padding-top: 0px;
+        font-weight: lighter;
+        font-size: small;
+      }
+    }
+  }
+}
+.overlay {
+  font-size: large;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    z-index: 2;
+    pointer-events: none;
+    transition: all 1s ease;
+    opacity: 0;
+
+    &.fade-in {
+      opacity: 1;
+    }
+  }
+  button {
+    background-color: transparent;
+    position: fixed;
+    right: 20%;
+    top: 40px;
+    cursor: pointer;
+    z-index: 400;
+  }
+}
+.fixed-body {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+#index-search__header {
+  display: none;
+}
+
+img.placeholder {
+  object-fit: cover;
+  min-height: 75vh;
+  width: 100%;
+  transition: all 1s ease;
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  &.fade-out {
+    opacity: 0;
+  }
+}
+.skeleton {
+  &-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-50px);
+    padding: 0px 20px;
+  }
+
+  &-carousel {
+    display: grid;
+    padding: 0px 40px;
+    gap: 50px;
+    row-gap: 30px;
+    grid-auto-rows: minmax(min-content, auto);
+    grid-template-columns: repeat(1, 1fr);
+    @media (min-width: $breakpoint-mobile) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: $breakpoint-tab) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &-card {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    height: 80vh;
+    width: 80vw;
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    justify-content: end;
+    animation: pulse 1.5s infinite;
+    @media (min-width: $breakpoint-mobile) {
+      height: 70vh;
+      width: 40vw;
+    }
+    @media (min-width: $breakpoint-tab) {
+      height: 45vh;
+      width: 20vw;
+    }
+  }
+
+  &-text {
+    height: 20px;
+    width: 60%;
+    margin-top: 10px;
+    background-color: #d0d0d0;
+    border-radius: 5px;
+
+    &.short {
+      height: 15px;
+      width: 50%;
+    }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}

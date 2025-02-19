@@ -1,0 +1,53 @@
+// Reset default styles
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  border: none;
+  outline: none;
+}
+@mixin hide-search-clear-button {
+  &::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  &::-moz-search-clear-button {
+    display: none;
+  }
+
+  &::-ms-clear {
+    display: none;
+  }
+}
+
+// Apply to all search inputs
+input[type="search"] {
+  @include hide-search-clear-button;
+}
