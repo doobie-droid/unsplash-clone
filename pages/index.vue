@@ -45,9 +45,7 @@ export default {
       return this.foundPhoto;
     },
     toggleLoading() {
-      setTimeout(() => {
-        this.isLoading = false;
-      }, 2000);
+      this.isLoading = false;
     },
   },
 };

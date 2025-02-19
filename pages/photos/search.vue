@@ -35,9 +35,7 @@ export default {
   },
   methods: {
     toggleLoading() {
-      setTimeout(() => {
-        this.isLoading = false;
-      }, 2000);
+      this.isLoading = false;
     },
   },
 };
