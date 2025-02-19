@@ -42,7 +42,7 @@
         :class="{ 'fade-out': imageLoaded }"
       />
       <img
-        sizes="75vh"
+        sizes="(min-width: 768px) 75vh,65vh"
         :alt="`${photo.alt_description}`"
         :srcset="`${generateSrcSet(photo.urls.full, 'h')}`"
         :class="{ 'fade-in': imageLoaded }"

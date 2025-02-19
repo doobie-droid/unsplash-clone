@@ -138,9 +138,14 @@
     background-color: white;
     border-radius: 10px;
     width: fit-content;
-    height: 90vh;
+    height: 80vh;
     overflow: hidden;
     position: relative;
+    margin: 0 5%;
+
+    @media (min-width: $breakpoint-mobile) {
+      height: 90vh;
+    }
 
     .metadata {
       z-index: 4;
@@ -186,10 +191,15 @@
   button {
     background-color: transparent;
     position: fixed;
-    right: 20%;
-    top: 40px;
+    right: 6%;
+    top: 3%;
     cursor: pointer;
     z-index: 400;
+
+    @media (min-width: $breakpoint-mobile) {
+      right: 20%;
+      top: 40px;
+    }
   }
 }
 .fixed-body {

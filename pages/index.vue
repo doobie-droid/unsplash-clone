@@ -50,8 +50,8 @@ export default {
       this.isLoading = false;
     },
     invalidateFoundPhoto() {
-      console.log("modal closed");
       this.foundPhoto = null;
+      this.$router.push("/");
     },
   },
 };
