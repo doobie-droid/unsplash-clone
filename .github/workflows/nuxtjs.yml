@@ -21,9 +21,6 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./.output/public
-        env:
-          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY}}
-          UNSPLASH_API_URL: https://api.unsplash.com/
   # Deployment job
   deploy:
     # Add a dependency to the build job
