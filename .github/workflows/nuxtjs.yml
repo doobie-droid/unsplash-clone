@@ -36,6 +36,8 @@ jobs:
     # Specify runner + deployment step
     runs-on: ubuntu-latest
     steps:
+      - name: Set Environment Variables
+        run: echo "UNSPLASH_ACCESS_KEY=${{ secrets.UNSPLASH_ACCESS_KEY }}" > .env
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
