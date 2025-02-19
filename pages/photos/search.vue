@@ -1,7 +1,10 @@
 <template>
   <div>
     <backdrop>
-      <h1>
+      <h1 v-if="isLoading">
+        Searching for <span>"{{ queryParam }}"</span>
+      </h1>
+      <h1 v-else>
         Search results for <span>"{{ queryParam }}"</span>
       </h1>
     </backdrop>
@@ -32,7 +35,9 @@ export default {
   },
   methods: {
     toggleLoading() {
-      this.isLoading = false;
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 2000);
     },
   },
 };
