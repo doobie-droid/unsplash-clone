@@ -15,7 +15,6 @@
         <!-- <img :src="blurHashToBase64(photo.blur_hash)" /> -->
         <img
           :alt="`${photo.alt_description}`"
-          loading="lazy"
           itemprop="thumbnailUrl"
           sizes="(min-width: 1440px) 288px, (min-width: 992px) calc(calc(100vw - 572px) / 3), (min-width: 768px) calc(calc(100vw - 400px) / 2), 75vw"
           :srcset="`${generateSrcSet(photo.urls.full)}`"
