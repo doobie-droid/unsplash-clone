@@ -14,8 +14,8 @@
     />
   </div>
 </template>
-
-<script>
+  
+  <script>
 import { usePhotoStore } from "~/stores/photoStore";
 import Backdrop from "~/components/ui/Backdrop.vue";
 import SearchBar from "~/components/widgets/SearchBar.vue";
@@ -56,3 +56,4 @@ export default {
   },
 };
 </script>
+  
