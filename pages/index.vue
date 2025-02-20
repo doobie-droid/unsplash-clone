@@ -5,8 +5,7 @@
 <script>
 export default {
   mounted() {
-    const baseURL = this.$config.public.baseURL || "";
-    this.$router.replace(`${baseURL}/photos`);
+    this.$router.replace("/photos");
   },
 };
 </script>
