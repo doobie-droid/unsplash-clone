@@ -36,12 +36,4 @@ export default defineNuxtConfig({
       unsplashSecretKey: process.env.UNSPLASH_SECRET_KEY,
     },
   },
-  routeRules: {
-    "/": {
-      redirect: {
-        to: `${process.env.BASE_URL || ""}/unsplash-clone/photos`,
-        statusCode: 301,
-      },
-    },
-  },
 });
