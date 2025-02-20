@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { usePhotoStore } from "~/stores/photoStore";
 import Backdrop from "~/components/ui/Backdrop.vue";
 import SearchBar from "~/components/widgets/SearchBar.vue";
 import PictureDisplay from "~/components/unsplash/PictureDisplay.vue";
@@ -28,10 +29,12 @@ export default {
     return {
       isLoading: true,
       queryParam: "",
+      photoStore: usePhotoStore(),
     };
   },
-  mounted() {
+  async mounted() {
     this.queryParam = this.$route.query.query;
+    await this.photoStore.SearchPhotos(this.queryParam);
   },
   methods: {
     toggleLoading() {
