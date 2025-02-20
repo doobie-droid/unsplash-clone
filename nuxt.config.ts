@@ -38,7 +38,10 @@ export default defineNuxtConfig({
   },
   routeRules: {
     "/": {
-      redirect: { to: "/photos", statusCode: 301 },
+      redirect: {
+        to: `${process.env.BASE_URL || ""}/unsplash-clone/photos`,
+        statusCode: 301,
+      },
     },
   },
 });
