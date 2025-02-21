@@ -1,7 +1,9 @@
 <template>
   <div class="picture-display">
     <div class="picture-carousel">
+      <h2 v-if="!photoCount" class="warning">No images were found</h2>
       <PictureCard
+        v-else
         v-for="photo in photoStore.GetPhotos"
         :key="photo.id"
         :photo="photo"
@@ -25,10 +27,17 @@ export default {
       photoStore: usePhotoStore(),
     };
   },
-  mount() {
+  mounted() {
     window.addEventListener("scroll", this.adjustGridRows);
+    if (!this.photoCount) {
+      this.$emit("pictureDisplayLoaded");
+    }
   },
-
+  computed: {
+    photoCount() {
+      return this.photoStore.GetPhotos.length;
+    },
+  },
   methods: {
     adjustGridRows() {
       const gridItems = document.querySelectorAll(".picture-card");

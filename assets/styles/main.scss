@@ -16,6 +16,7 @@
       display: block;
       left: 10%;
     }
+
     span {
       color: $backdrop-text-secondary;
     }
@@ -71,6 +72,8 @@
     padding: 0px 20px;
     @media (min-width: $breakpoint-mobile) {
       transform: translate(-50px, -50px);
+    }
+    &-null-caption {
     }
   }
   &-carousel {
@@ -294,4 +297,13 @@ img.placeholder {
   100% {
     opacity: 1;
   }
+}
+
+.warning {
+  text-transform: capitalize;
+  text-align: left;
+  color: black;
+  font-weight: 100;
+  color: lightcoral;
+  font-size: large;
 }
