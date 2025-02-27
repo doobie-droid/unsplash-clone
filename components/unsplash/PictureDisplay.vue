@@ -2,18 +2,13 @@
   <div class="picture-display">
     <div class="picture-carousel">
       <h2 v-if="!photoCount" class="warning">No images were found</h2>
-      <PictureCard
-        v-else
-        v-for="photo in photoStore.GetPhotos"
-        :key="photo.id"
-        :photo="photo"
-        @pictureCardLoaded="handleImageLoaded"
-      />
+      <PictureCard v-else v-for="photo in photoStore.GetPhotos" :key="photo.id" :photo="photo"
+        @pictureCardLoaded="handleImageLoaded" />
     </div>
   </div>
 </template>
-  
-  <script>
+
+<script>
 import { usePhotoStore } from "~/stores/photoStore";
 import PictureCard from "./PictureCard.vue";
 
@@ -28,7 +23,6 @@ export default {
     };
   },
   mounted() {
-    window.addEventListener("scroll", this.adjustGridRows);
     if (!this.photoCount) {
       this.$emit("pictureDisplayLoaded");
     }
@@ -46,6 +40,7 @@ export default {
         let rowSpan;
         const height = image.clientHeight;
         rowSpan = Math.round(height / this.getMinRowHeight());
+        console.log(rowSpan)
         item.style.gridRow = `span ${rowSpan}`;
       });
     },
@@ -67,6 +62,3 @@ export default {
   },
 };
 </script>
-  
-
-  
