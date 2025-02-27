@@ -1,35 +1,21 @@
 <template>
-  <figure
-    :key="photo.id"
-    class="picture-card"
-    itemprop="image"
-    itemscope
-    itemtype="https://schema.org/ImageObject"
-  >
-    <NuxtLink
-      itemprop="imageUrl"
-      :title="photo.alt_description"
-      :to="`/photos/${photo.slug}`"
-    >
+  <figure :key="photo.id" class="picture-card" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+    <NuxtLink itemprop="imageUrl" :title="photo.alt_description" :to="`/photos/${photo.slug}`">
       <div class="picture-toggler">
         <!-- <img :src="blurHashToBase64(photo.blur_hash)" /> -->
-        <img
-          :alt="`${photo.alt_description}`"
-          itemprop="thumbnailUrl"
+        <img :alt="`${photo.alt_description}`" itemprop="thumbnailUrl"
           sizes="(min-width: 1440px) 288px, (min-width: 992px) calc(calc(100vw - 572px) / 3), (min-width: 768px) calc(calc(100vw - 400px) / 2), 75vw"
-          :srcset="`${generateSrcSet(photo.urls.full)}`"
-          @load="handleImageLoad"
-        />
-        <span class="metadata"
-          ><div class="name">{{ photo.user.name }}</div>
+          :srcset="`${generateSrcSet(photo.urls.full)}`" @load="handleImageLoad" />
+        <span class="metadata">
+          <div class="name">{{ photo.user.name }}</div>
           <div class="location">{{ photo.user.location }}</div>
         </span>
       </div>
     </NuxtLink>
   </figure>
 </template>
-  
-  <script>
+
+<script>
 import { decodeBlurHash } from "fast-blurhash";
 export default {
   props: {
@@ -68,6 +54,3 @@ export default {
   },
 };
 </script>
-  
-
-  

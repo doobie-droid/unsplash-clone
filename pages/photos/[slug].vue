@@ -7,15 +7,11 @@
       <Skeleton v-if="isLoading" />
       <PictureDisplay @pictureDisplayLoaded="toggleLoading" />
     </div>
-    <PictureDetail
-      :photo="foundPhoto"
-      v-if="foundPhoto"
-      @closeModal="invalidateFoundPhoto"
-    />
+    <PictureDetail :photo="foundPhoto" v-if="foundPhoto" @closeModal="invalidateFoundPhoto" />
   </div>
 </template>
-  
-  <script>
+
+<script>
 import { usePhotoStore } from "~/stores/photoStore";
 import Backdrop from "~/components/ui/Backdrop.vue";
 import SearchBar from "~/components/widgets/SearchBar.vue";
@@ -56,4 +52,3 @@ export default {
   },
 };
 </script>
-  

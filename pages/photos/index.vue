@@ -9,7 +9,7 @@
     </div>
   </div>
 </template>
-  
+
 <script>
 import { usePhotoStore } from "~/stores/photoStore";
 import Backdrop from "~/components/ui/Backdrop.vue";
@@ -38,4 +38,3 @@ export default {
   },
 };
 </script>
-  

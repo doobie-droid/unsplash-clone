@@ -9,10 +9,9 @@
   </div>
 </template>
 
-  
+
 <script>
 export default {
   name: "Skeleton",
 };
 </script>
-  
