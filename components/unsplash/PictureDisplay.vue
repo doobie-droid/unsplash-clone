@@ -1,25 +1,32 @@
 <template>
-  <div class="picture-display">
-    <div class="picture-carousel">
-      <h2 v-if="!photoCount" class="warning">No images were found</h2>
-      <PictureCard v-else v-for="photo in photos" :key="photo.id" :photo="photo"
-        @pictureCardLoaded="handleImageLoaded" />
+  <div>
+    <div class="picture-display">
+      <div class="picture-carousel">
+        <h2 v-if="!photoCount" class="warning">No images were found</h2>
+        <PictureCard v-else v-for="photo in photos" :key="photo.id" :photo="photo"
+          @pictureCardLoaded="handleImageLoaded" @displayInDetail="displayInDetail" />
+      </div>
     </div>
+    <PictureDetail :photo="foundPhoto" v-if="foundPhoto" @closeModal="invalidateFoundPhoto" />
   </div>
+
 </template>
 
 <script>
 import { usePhotoStore } from "~/stores/photoStore";
 import PictureCard from "./PictureCard.vue";
+import PictureDetail from "./PictureDetail.vue";
 
 export default {
   name: "PictureDisplay",
   components: {
     PictureCard,
+    PictureDetail,
   },
   data() {
     return {
       photoStore: usePhotoStore(),
+      foundPhoto: null,
     };
   },
   props: {
@@ -64,6 +71,16 @@ export default {
       this.adjustGridRows();
       this.$emit("pictureDisplayLoaded");
     },
+    invalidateFoundPhoto() {
+      this.foundPhoto = null
+    },
+    displayInDetail(photoId) {
+      const photos = this.photoStore.GetPhotos;
+      if (!Array.isArray(photos) || photos.length === 0) {
+        return null;
+      }
+      this.foundPhoto = photos.find((photo) => photo.id === photoId) || null;
+    }
   },
 };
 </script>
