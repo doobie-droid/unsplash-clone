@@ -5,7 +5,7 @@
     </backdrop>
     <div class="index-body">
       <Skeleton v-if="isLoading" />
-      <PictureDisplay @pictureDisplayLoaded="toggleLoading" />
+      <PictureDisplay v-else :photos="photoStore.GetPhotos" @pictureDisplayLoaded="toggleLoading" />
     </div>
     <PictureDetail :photo="foundPhoto" v-if="foundPhoto" @closeModal="invalidateFoundPhoto" />
   </div>
@@ -31,6 +31,7 @@ export default {
   },
   async mounted() {
     await this.photoStore.FetchAllPhotos();
+    this.isLoading = false
     this.foundPhoto = this.findPhotoBySlug(this.$route.params.slug);
   },
   methods: {
@@ -41,9 +42,6 @@ export default {
       }
       this.foundPhoto = photos.find((photo) => photo.slug === slug) || null;
       return this.foundPhoto;
-    },
-    toggleLoading() {
-      this.isLoading = false;
     },
     invalidateFoundPhoto() {
       this.foundPhoto = null;
