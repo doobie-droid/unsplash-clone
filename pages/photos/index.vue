@@ -5,7 +5,7 @@
     </backdrop>
     <div class="index-body">
       <Skeleton v-if="isLoading" />
-      <PictureDisplay @pictureDisplayLoaded="toggleLoading" />
+      <PictureDisplay v-else :photos="photoStore.GetPhotos" @pictureDisplayLoaded="toggleLoading" />
     </div>
   </div>
 </template>
@@ -30,11 +30,7 @@ export default {
   },
   async mounted() {
     await this.photoStore.FetchAllPhotos();
-  },
-  methods: {
-    toggleLoading() {
-      this.isLoading = false;
-    },
+    this.isLoading = false
   },
 };
 </script>

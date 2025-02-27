@@ -1,16 +1,11 @@
 <template>
   <div>
     <backdrop>
-      <h1 v-if="isLoading">
-        Searching for <span>"{{ queryParam }}"</span>
-      </h1>
-      <h1 v-else>
-        Search results for <span>"{{ queryParam }}"</span>
-      </h1>
+      <SearchHeading :queryParam="queryParam" :isLoading="isLoading" />
     </backdrop>
     <div class="index-body">
       <Skeleton v-if="isLoading" />
-      <PictureDisplay @pictureDisplayLoaded="toggleLoading" />
+      <PictureDisplay v-else :photos="photoStore.GetPhotos" @pictureDisplayLoaded="toggleLoading" />
     </div>
   </div>
 </template>
@@ -21,9 +16,10 @@ import Backdrop from "~/components/ui/Backdrop.vue";
 import SearchBar from "~/components/widgets/SearchBar.vue";
 import PictureDisplay from "~/components/unsplash/PictureDisplay.vue";
 import Skeleton from "~/components/ui/Skeleton.vue";
+import SearchHeading from "~/components/unsplash/SearchHeading.vue";
 
 export default {
-  components: { Backdrop, SearchBar, PictureDisplay, Skeleton },
+  components: { Backdrop, SearchBar, PictureDisplay, Skeleton, SearchHeading },
   name: "SearchPage",
   data() {
     return {
@@ -35,11 +31,7 @@ export default {
   async mounted() {
     this.queryParam = this.$route.query.query;
     await this.photoStore.SearchPhotos(this.queryParam);
-  },
-  methods: {
-    toggleLoading() {
-      this.isLoading = false;
-    },
+    this.isLoading = false
   },
 };
 </script>

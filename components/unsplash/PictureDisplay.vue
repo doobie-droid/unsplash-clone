@@ -2,7 +2,7 @@
   <div class="picture-display">
     <div class="picture-carousel">
       <h2 v-if="!photoCount" class="warning">No images were found</h2>
-      <PictureCard v-else v-for="photo in photoStore.GetPhotos" :key="photo.id" :photo="photo"
+      <PictureCard v-else v-for="photo in photos" :key="photo.id" :photo="photo"
         @pictureCardLoaded="handleImageLoaded" />
     </div>
   </div>
@@ -22,6 +22,12 @@ export default {
       photoStore: usePhotoStore(),
     };
   },
+  props: {
+    photos: {
+      type: Array,
+      required: true,
+    },
+  },
   mounted() {
     if (!this.photoCount) {
       this.$emit("pictureDisplayLoaded");
@@ -29,7 +35,7 @@ export default {
   },
   computed: {
     photoCount() {
-      return this.photoStore.GetPhotos.length;
+      return this.photos.length;
     },
   },
   methods: {
@@ -40,7 +46,6 @@ export default {
         let rowSpan;
         const height = image.clientHeight;
         rowSpan = Math.round(height / this.getMinRowHeight());
-        console.log(rowSpan)
         item.style.gridRow = `span ${rowSpan}`;
       });
     },
