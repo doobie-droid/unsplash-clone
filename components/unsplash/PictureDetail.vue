@@ -1,9 +1,9 @@
 <template>
   <div id="picture-details" class="overlay">
     <div class="picture-details-card">
-      <img :src="blurHashToBase64(photo.blur_hash)" class="placeholder" :class="{ 'fade-out': imageLoaded }" />
+      <img :src="blurHashToBase64(photo.blur_hash)" class="placeholder fade" :class="{ 'fade-out': imageLoaded }" />
       <img sizes="(min-width: 768px) 75vh,65vh" :alt="`${photo.alt_description}`"
-        :srcset="`${generateSrcSet(photo.urls.full, 'h')}`" :class="{ 'fade-in': imageLoaded }"
+        :srcset="`${generateSrcSet(photo.urls.full, 'h')}`" :class="{ 'fade-out': !imageLoaded }"
         @load="hidePlaceholder" />
       <span class="metadata">
         <div class="name">{{ photo.user.name }}</div>

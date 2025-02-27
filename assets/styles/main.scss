@@ -183,11 +183,11 @@
   img {
     z-index: 2;
     pointer-events: none;
-    transition: all 1s ease;
-    opacity: 0;
-
-    &.fade-in {
-      opacity: 1;
+    object-fit: cover;
+    min-height: 65vh;
+    width: 100%;
+    @media (min-width: $breakpoint-mobile) {
+      min-height: 75vh;
     }
   }
   button {
@@ -212,20 +212,6 @@
   display: none;
 }
 
-img.placeholder {
-  object-fit: cover;
-  min-height: 75vh;
-  width: 100%;
-  transition: all 1s ease;
-  opacity: 1;
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  &.fade-out {
-    opacity: 0;
-  }
-}
 .skeleton {
   &-display {
     display: flex;
@@ -297,6 +283,20 @@ img.placeholder {
   }
 }
 
+.placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: black;
+}
+.fade {
+  opacity: 1;
+  transition: all 2s ease-in-out;
+}
+
+.fade-out {
+  opacity: 0;
+}
 .warning {
   text-transform: capitalize;
   text-align: left;
