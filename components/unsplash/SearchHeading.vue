@@ -1,7 +1,7 @@
 <template>
     <h1>
-        <span v-if="isLoading">Searching for</span>
-        <span v-else>Search results for</span>
+        <span v-if="isLoading">Searching for </span>
+        <span v-else>Search results for </span>
         <span>"{{ queryParam }}"</span>
     </h1>
 </template>
