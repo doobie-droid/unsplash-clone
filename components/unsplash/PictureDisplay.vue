@@ -7,7 +7,9 @@
           @pictureCardLoaded="handleImageLoaded" @displayInDetail="displayInDetail" />
       </div>
     </div>
-    <PictureDetail :photo="foundPhoto" v-if="foundPhoto" @closeModal="invalidateFoundPhoto" />
+    <transition name="fade">
+      <PictureDetail :photo="foundPhoto" v-if="foundPhoto" @closeModal="invalidateFoundPhoto" />
+    </transition>
   </div>
 
 </template>
