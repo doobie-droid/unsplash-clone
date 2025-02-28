@@ -1,5 +1,7 @@
 @use "variables" as *;
 @use "reset";
+@use "utilities";
+@use "animations";
 
 .index {
   &-backdrop {
@@ -271,37 +273,9 @@
   }
 }
 
-@keyframes pulse {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.4;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
 .placeholder {
   position: absolute;
   top: 0;
   left: 0;
   background-color: black;
-}
-.fade {
-  opacity: 1;
-  transition: all 2s ease-in-out;
-}
-
-.fade-out {
-  opacity: 0;
-}
-.warning {
-  text-transform: capitalize;
-  text-align: left;
-  color: black;
-  font-weight: 100;
-  color: lightcoral;
-  font-size: large;
 }

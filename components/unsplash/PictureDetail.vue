@@ -1,11 +1,12 @@
 <template>
-  <div id="picture-details" class="overlay">
+  <div id="picture-details" class="overlay ">
     <div class="picture-details-card" :style="{
       '--aspect-ratio': `${photo.width} / ${photo.height}`
     }">
-      <img :src="blurHashToBase64(photo.blur_hash)" class="placeholder fade" :class="{ 'fade-out': imageLoaded }" />
+      <img :src="blurHashToBase64(photo.blur_hash)" class="placeholder fade opacity-1"
+        :class="{ 'fade-out': imageLoaded }" />
       <img sizes="(min-width: 768px) 75vh,65vh" :alt="`${photo.alt_description}`"
-        :srcset="`${generateSrcSet(photo.urls.full, 'h')}`" :class="{ 'fade-out': !imageLoaded }"
+        :srcset="`${generateSrcSet(photo.urls.full, 'h')}`" class="fade opacity-0" :class="{ 'fade-in': imageLoaded }"
         @load="hidePlaceholder" />
       <span class="metadata">
         <div class="name">{{ photo.user.name }}</div>
