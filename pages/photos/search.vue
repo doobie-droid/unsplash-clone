@@ -5,7 +5,7 @@
     </backdrop>
     <div class="index-body">
       <Skeleton v-if="isLoading" />
-      <PictureDisplay v-else :photos="photoStore.GetPhotos" @pictureDisplayLoaded="toggleLoading" />
+      <PictureDisplay v-else :photos="photoStore.GetPhotos" />
     </div>
   </div>
 </template>

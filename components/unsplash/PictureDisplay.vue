@@ -41,6 +41,7 @@ export default {
     if (!this.photoCount) {
       this.$emit("pictureDisplayLoaded");
     }
+    this.adjustGridRows()
   },
   computed: {
     photoCount() {
@@ -49,21 +50,21 @@ export default {
   },
   methods: {
     adjustGridRows() {
+      // alert(this.getMinRowHeight())
       const gridItems = document.querySelectorAll(".picture-card");
       gridItems.forEach((item) => {
-        const image = item.querySelector("img");
         let rowSpan;
-        const height = image.clientHeight;
-        rowSpan = Math.round(height / this.getMinRowHeight());
+        const height = item.clientHeight;
+        rowSpan = Math.floor(height / this.getMinRowHeight());
+        console.log(rowSpan)
         item.style.gridRow = `span ${rowSpan}`;
       });
     },
     getMinRowHeight() {
-      const gridItems = document.querySelectorAll(".picture-card");
+      const gridItems = document.querySelectorAll(".picture-toggler");
       let minHeight = 20000;
       gridItems.forEach((item) => {
-        const image = item.querySelector("img");
-        const height = image.clientHeight;
+        const height = item.clientHeight;
         minHeight = height < minHeight ? height : minHeight;
       });
       return minHeight;
