@@ -41,6 +41,8 @@ export default {
     if (!this.photoCount) {
       this.$emit("pictureDisplayLoaded");
     }
+
+    window.addEventListener("resize", this.adjustGridRows);
     this.adjustGridRows()
   },
   computed: {
@@ -50,28 +52,24 @@ export default {
   },
   methods: {
     adjustGridRows() {
-      // alert(this.getMinRowHeight())
+      const grid = document.querySelector(".picture-carousel");
+      if (!grid) return;
+      const rowHeight = parseInt(
+        window.getComputedStyle(grid).getPropertyValue("grid-auto-rows")
+      );
+      const rowGap = parseInt(
+        window.getComputedStyle(grid).getPropertyValue("row-gap")
+      );
       const gridItems = document.querySelectorAll(".picture-card");
       gridItems.forEach((item) => {
         let rowSpan;
         const height = item.clientHeight;
-        rowSpan = Math.floor(height / this.getMinRowHeight());
-        console.log(rowSpan)
-        item.style.gridRow = `span ${rowSpan}`;
+        rowSpan = Math.ceil((height + rowGap) / (rowGap + rowHeight));
+        item.style.gridRowEnd = `span ${rowSpan}`;
       });
-    },
-    getMinRowHeight() {
-      const gridItems = document.querySelectorAll(".picture-toggler");
-      let minHeight = 20000;
-      gridItems.forEach((item) => {
-        const height = item.clientHeight;
-        minHeight = height < minHeight ? height : minHeight;
-      });
-      return minHeight;
     },
     handleImageLoaded(photoId) {
       let _ = photoId;
-      this.adjustGridRows();
       this.$emit("pictureDisplayLoaded");
     },
     invalidateFoundPhoto() {

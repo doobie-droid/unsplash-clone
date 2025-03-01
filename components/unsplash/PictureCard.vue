@@ -8,7 +8,7 @@
       <img :alt="`${photo.alt_description}`" itemprop="thumbnailUrl"
         sizes="(min-width: 1440px) 288px, (min-width: 992px) calc(calc(100vw - 572px) / 3), (min-width: 768px) calc(calc(100vw - 400px) / 2), 75vw"
         :srcset="`${generateSrcSet(photo.urls.full)}`" @load="handleImageLoad" @click="displayInDetail"
-        class="fade opacity-0" :class="{ 'fade-in': imageLoaded }" />
+        class="fade opacity-0" :class="{ 'fade-in': imageLoaded }" loading="lazy" />
       <span class="metadata">
         <div class="name">{{ photo.user.name }}</div>
         <div class="location">{{ photo.user.location }}</div>
