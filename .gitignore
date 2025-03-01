@@ -25,3 +25,4 @@ logs
 
 # Ignore Yarn install state if not needed
 .yarn
+.yarn/install-state.gz
