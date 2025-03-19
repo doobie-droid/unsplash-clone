@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   app: {
-    baseURL: process.env.BASE_URL || "/unsplash-clone/",
+    baseURL: process.env.BASE_URL || "/unsplash-clon/",
     head: {
       title: process.env.npm_package_title || "",
       meta: [
