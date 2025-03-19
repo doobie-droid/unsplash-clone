@@ -8,7 +8,7 @@ export default defineNuxtConfig({
         {
           name: "description",
           content:
-            "This is a clone of the Unsplash web application created as part of my cowrywise recruitment",
+            "This is a clone of the Unsplash web application created as part of my cowrywise recruitment exercise",
         },
       ],
       link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
