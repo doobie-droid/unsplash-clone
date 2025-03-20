@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   app: {
-    baseURL: process.env.BASE_URL || "/unsplash-clone/",
+    baseURL: "/",
     head: {
       title: process.env.npm_package_title || "",
       meta: [
@@ -15,10 +15,7 @@ export default defineNuxtConfig({
     },
   },
   nitro: {
-    prerender: {
-      crawlLinks: true,
-      routes: ["/"],
-    },
+    preset: "netlify",
   },
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
